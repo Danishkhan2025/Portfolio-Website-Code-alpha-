@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danish's Portfolio</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<!-- <script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "cqmOTTK0AxcSBadsv",
+      });
+   })(); -->
+</script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: rgb(0, 0, 33);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      padding: 0 40px;
+      background-color: rgb(20, 20, 50);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-links li {
+      list-style: none;
+      margin: 0 15px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      padding: 6px 12px;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: black;
+      font-weight: bold;
+      border-bottom: 2px solid rgb(170, 107, 229);
+      border-radius: 22px;
+      background-color: aliceblue;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px;
+    }
+
+    @media(max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgb(20, 20, 50);
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 200px;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 0px 10%;
+      text-align: center;
+      scroll-margin-top: 90px; /* for smooth scroll to sticky nav */
+    }
+
+    .firstSection {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 100px 0;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .firstSection>div {
+      width: 40%;
+      min-width: 280px;
+    }
+
+    .purpule {
+      color: rgb(170, 107, 229);
+      font-weight: bold;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: rgb(170, 107, 229);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: rgb(120, 70, 190);
+    }
+
+    .rightSection img {
+      width: 250px;
+      border-radius: 50%;
+      border: 3px solid white;
+      transition: 0.5s;
+    }
+    .rightSection img:hover{
+      transform: translateY(-9px);
+    }
+
+    #element {
+      color: rgb(170, 107, 229);
+    }
+
+    hr {
+      border: 0;
+      background-color: #9c97f0;
+      height: 1px;
+      margin: 40px 60px;
+    }
+
+    /* About, Skills, Projects, Contact */
+    .about h2,
+    .skills h2,
+    .projects h2,
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: rgb(170, 107, 229);
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      color: lightgray;
+    }
+
+    .skill-box,
+    .project-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .skill {
+      background: rgb(40, 40, 70);
+      padding: 15px;
+      width: 150px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      background: rgb(70, 70, 120);
+      transform: translateY(-5px);
+    }
+
+    .project {
+      background: rgb(40, 40, 70);
+      padding: 20px;
+      width: 280px;
+      border-radius: 12px;
+       transition: 0.3s;
+
+    }
+
+    .project img {
+      width: 80%;
+      border-radius: 50px;
+      border: 2px solid white;
+            /* transform: translateY(-5px); */
+
+    }
+    
+    .project:hover{
+            transform: translateY(-5px);
+
+    }
+    
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .contact button {
+      padding: 12px;
+      background: rgb(170, 107, 229);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact button:hover {
+      background: rgb(120, 70, 190);
+    }
+
+    /* Fixed Social Icons */
+    .fixed-social {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .fixed-social a {
+      background: rgb(20, 20, 50);
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.3rem;
+      transition: 0.3s;
+    }
+
+    .fixed-social a:hover {
+      background: rgb(170, 107, 229);
+      color: white;
+    }
+
+    footer {
+      background-color: rgb(20, 20, 50);
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <nav>
+      <div class="logo">Danish's Portfolio</div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="firstSection" id="home">
+    <div class="leftSection">
+      Hi, I am <span class="purpule">Danish Ali</span>
+      <div>and I am passionate</div>
+      <span id="element"></span><br>
+      <a href="https://drive.google.com/file/d/17V5P6G5oOIFdmFcuEXmQotD0PHdCccMf/view?usp=drivesdk" target="_blank" class="btn" download>⬇ Download Resume</a>
+    </div>
+    <div class="rightSection">
+      <img src="dani.jpg" alt="Danish Profile">
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2>About Me</h2>
+    <p>Hi, I’m  <b>Danish Ali</b>, a Software Engineering student at <b> COMSATS University Islamabad</b>. I am passionate about web development, Java programming, and creating modern, user-friendly applications. I enjoy building projects that solve real-world problems and constantly improving my skills.</p>
+  </section>
+
+  <hr>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <h2>My Skills</h2>
+    <div class="skill-box">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Java</div>
+      <div class="skill">Python</div>
+      <div class="skill">Web development</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <h2>Projects</h2>
+    <div class="project-box">
+      <div class="project">
+        <img src="portfolio.jpg" alt="Project 1">
+        <p>Portfolio Website</p>
+        <a href="https://github.com/Danishkhan2025/portfolio-website" target="_blank" class="btn">GitHub</a>
+      </div>
+      <div class="project">
+        <img src="gym.jpg" alt="Project 2">
+        <p>Local Gym Website (Frontend )</p>
+        <a href="https://github.com/Danishkhan2025/Local-Gym-Website-Frontend-Develpoment-.git" target="_blank" class="btn">GitHub</a>
+      </div>
+      <div class="project">
+        <img src="delivery.jpg" alt="Project 3">
+        <p>Online Food Delivery Website (Frontend)</p>
+        <a href="https://github.com/Danishkhan2025/Online-Food-Delivery-Website-Frontend-.git" target="_blank" class="btn">GitHub</a>
+      </div>
+      <div class="project">
+        <img src="survey.jpg" alt="Project 4">
+        <p>University Survey System(GUI Based)</p>
+        <a href="https://github.com/Danishkhan2025/University-Survey-System.git" target="_blank" class="btn">GitHub</a>
+      </div>
+      <div class="project">
+        <img src="independence.jpg" alt="Project 5">
+        <p>Independence Day Celebration </p>
+        <a href="https://github.com/Danishkhan2025/Independence-Day-Project.git" target="_blank" class="btn">GitHub</a>
+      </div>
+      <div class="project">
+        <img src="calculator.jpg" alt="Project 6">
+        <p>Basic Calculator</p>
+        <a href="https://github.com/Danishkhan2025/Basic-Calculator-Code-Alpha-.git" target="_blank" class="btn">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" name="user_name" placeholder="Your Name" required>
+      <input type="email" name="user_email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- FIXED SOCIAL ICONS -->
+  <div class="fixed-social">
+    <a href="https://www.linkedin.com/in/danish-khan-602b59356/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/Danishkhan2025" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="mailto:dk3225908@gmail.com"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/923176270646" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 www.danishportfolio.com | All Rights Reserved
+  </footer>
+
+  <!-- JS -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Typed.js effect
+    var typed = new Typed('#element', {
+      strings: ['<i>Web Developer</i>', 'Frontend Developer', 'Java Expert', 'Software Engineer'],
+      typeSpeed: 50,
+      backSpeed: 30,
+      loop: true
+    });
+
+    // Mobile Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Scroll Spy for Active Links
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links li a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 90;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navItems.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href').includes(current)) {
+          a.classList.add('active');
+        }
+      });
+    });
+
+    // EmailJS Init
+    (function () {
+      emailjs.init("cqmOTTK0AxcSBadsv"); // Replace with your EmailJS Public Key
+    })();
+
+    // Contact Form Handler
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      emailjs.sendForm("service_1ewmh38", "template_hjp8agk", this)
+        .then(() => {
+          alert("✅ Message sent successfully!");
+          this.reset();
+        }, (err) => {
+          alert("❌ Failed to send message: " + JSON.stringify(err));
+        });
+    });
+  </script>
+</body>
+
+</html>
